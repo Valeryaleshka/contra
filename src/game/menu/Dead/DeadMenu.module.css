@@ -1,0 +1,101 @@
+.wrapper {
+  position: absolute;
+  display: flex;
+  background-color: black;
+  color: white;
+  opacity: 1;
+  height: 100vh;
+  width: 100vw;
+  max-width: 1200px;
+  max-height: 800px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 25;
+  font-size: 35px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.logo {
+  animation: fadein 2s ease-in alternate infinite;
+  widows: 500px;
+  height: 300px;
+}
+
+.textinput {
+  position: relative;
+  background-color: black;
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  height: 30px;
+
+  box-shadow: none;
+  outline: none;
+}
+.textinput + .label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: rgba(202, 83, 83, 0.48);
+  font-family: "Nunito Sans", sans-serif;
+  transition: all 0.15s ease;
+}
+.textinput:hover {
+  box-shadow: 0 0 0 3px rgba(202, 83, 83, 0.48);
+  background-color: black;
+  transition: all 0.25s ease;
+  border: 2px solid rgba(202, 83, 83, 0.48);
+}
+.textinput:hover + .label {
+  color: #000000;
+}
+
+.textinput:not(:placeholder-shown):not(:focus) + .label {
+  color: rgba(202, 83, 83, 0.48);
+  font-weight: 600;
+  font-size: 0.8rem;
+  top: 5px;
+  transform: unset;
+}
+
+.gameButton {
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: black;
+  padding: 20px;
+  border: none;
+  display: inline-block;
+  outline: none;
+}
+
+.gameButton:hover {
+  color: white;
+  background: red;
+  cursor: pointer;
+  outline: none;
+}
+
+.gameButton:active {
+  outline: none;
+  background: red;
+}

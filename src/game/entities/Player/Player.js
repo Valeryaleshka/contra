@@ -1,15 +1,25 @@
-import Unit from '../Unit';
+import Unit from "../Unit";
 import {
-  idle, moveAnimation, jump, fall, jumpAnimattion, idleFire, runAndFireAnimation, forceJump
-} from './Player.animations';
-import Matter from 'matter-js';
-import Gun from '../guns/Weapon';
-import Renderer from './Player.renderer';
+  idle,
+  moveAnimation,
+  jump,
+  fall,
+  jumpAnimattion,
+  idleFire,
+  runAndFireAnimation,
+  forceJump,
+} from "./Player.animations";
+import Matter from "matter-js";
+import Gun from "../guns/Weapon";
+import Renderer from "./Player.renderer";
 
 export default class Player extends Unit {
   constructor(factory) {
     super([45, 45], idle, factory, 0);
-    this.body = Matter.Bodies.rectangle(200, 600, 45, 45, { mass: 100, density: 10 ** 10, });
+    this.body = Matter.Bodies.rectangle(200, 600, 45, 45, {
+      mass: 100,
+      density: 10 ** 10,
+    });
     this.left = 200;
     this.unit = "player";
     this.weapon = new Gun(this);
@@ -18,8 +28,8 @@ export default class Player extends Unit {
 
   idleRight = () => {
     this.angle = 0;
-      this.changeAnimation(idle);
-    };
+    this.changeAnimation(idle);
+  };
 
   idleLeft = () => {
     this.angle = -180;
@@ -28,37 +38,37 @@ export default class Player extends Unit {
 
   moveRight = () => {
     this.angle = 0;
-    Matter.Body.translate(this.body, {x: this.speed, y: 0})
+    Matter.Body.translate(this.body, { x: this.speed, y: 0 });
     !this.isJumping && this.changeAnimation(moveAnimation);
   };
 
   moveRightAndLookUp = () => {
     this.angle = 315;
-    Matter.Body.translate(this.body, {x: this.speed, y: 0})
+    Matter.Body.translate(this.body, { x: this.speed, y: 0 });
     !this.isJumping && this.changeAnimation(moveAnimation);
   };
 
   moveRightAndLookDown = () => {
     this.angle = 45;
-    Matter.Body.translate(this.body, {x: this.speed, y: 0})
+    Matter.Body.translate(this.body, { x: this.speed, y: 0 });
     !this.isJumping && this.changeAnimation(moveAnimation);
   };
 
   moveLeft = () => {
     this.angle = -180;
-    Matter.Body.translate(this.body, {x: -this.speed, y: 0})
+    Matter.Body.translate(this.body, { x: -this.speed, y: 0 });
     !this.isJumping && this.changeAnimation(moveAnimation);
   };
 
   moveLeftAndLookUp = () => {
     this.angle = -135;
-    Matter.Body.translate(this.body, {x: -this.speed, y: 0})
+    Matter.Body.translate(this.body, { x: -this.speed, y: 0 });
     !this.isJumping && this.changeAnimation(moveAnimation);
   };
 
   moveLeftAndLookDown = () => {
     this.angle = -225;
-    Matter.Body.translate(this.body, {x: -this.speed, y: 0})
+    Matter.Body.translate(this.body, { x: -this.speed, y: 0 });
     !this.isJumping && this.changeAnimation(moveAnimation);
   };
 
@@ -83,37 +93,36 @@ export default class Player extends Unit {
   };
 
   forceMoveDown = () => {
-    console.log('force_move_down')
+    console.log("force_move_down");
     this.forceJump = true;
     this.angle = this.angle >= 0 ? 90 : -270;
     this.changeAnimation(forceJump);
-    Matter.Body.applyForce(this.body, this.body.position, {x: 0, y: 0.2})
-  }
-  
+    Matter.Body.applyForce(this.body, this.body.position, { x: 0, y: 0.2 });
+  };
+
   jump = () => {
     !this.isJumping && this.changeAnimation(jumpAnimattion);
     if (!this.isJumping) {
-      Matter.Body.applyForce(this.body, this.body.position, {x: 0, y: -5})
+      Matter.Body.applyForce(this.body, this.body.position, { x: 0, y: -5 });
       this.isJumping = true;
     }
-  }
+  };
 
   fire = () => {
     if (!this.weapon.isReloaded) {
       this.weapon.shoot();
-      this.changeAnimation(idleFire)
-    };
+      this.changeAnimation(idleFire);
+    }
   };
 
   die = () => {
     this.health = 0;
-    console.log('die!!!')
+    this.factory.game.menu.dead();
+    
   };
 
-  hit = dmg => {
+  hit = (dmg) => {
     this.health -= dmg;
-    console.log('hit!!!')
-  }
-
-
+    console.log("hit!!!");
+  };
 }
