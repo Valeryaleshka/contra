@@ -1,5 +1,4 @@
-import Element from '../Element';
-import Renderer from './Static.renderer';
+import Element from './Element';
 import Matter from 'matter-js';
 
 export default class StaticElement extends Element {
@@ -11,9 +10,6 @@ export default class StaticElement extends Element {
                           { isStatic: true, density: 10 ** 10 });
     this.type = "static";
     this.element = props.element;
-    this.bgx = props.bgx || 0;
-    this.bgy = props.bgy || 0;
-    this.renderer = Renderer;
     this.zIndex = 5;
   };
   

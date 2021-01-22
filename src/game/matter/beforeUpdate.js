@@ -10,8 +10,8 @@ export default function beforeUpdate () {
       once = false;
     } 
 
-    Object.values(entities).forEach(entity => {
-      entity.body && Matter.Body.setPosition(entity.body, {x: Math.round(entity.body.position.x), y: Math.round(entity.body.position.y)})
-    });
+    // Object.values(entities).forEach(entity => {
+    //   entity.body && Matter.Body.setPosition(entity.body, {x: Math.floor(entity.body.position.x), y: Math.floor(entity.body.position.y)})
+    // });
   });
 }

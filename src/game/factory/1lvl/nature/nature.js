@@ -5,11 +5,14 @@ import waterUpPng from './waterUp.png';
 import groundUpPng from './assets/groundUp.png';
 import groundYleftPng from './assets/groundVerticalLeft.png';
 import groundYrightPng from './assets/groundVerticalRight.png';
+import groundUpCorner from './assets/groundUpCorner.png';
 
 const asset = `url(${png})`
 const defaultPerspective = 10;
 
 const getAsset = asset => `url(${asset})`;
+
+const mirror = "180deg";
 
 /* Углы */
 
@@ -103,11 +106,11 @@ export default {
 
     ground: {
       upper: {
-        left: (left, top) => getItem(left, top, statics.groundUpper.left),
+        left: (left, top) => ({left, top, width: 74, height: 74, asset: getAsset(groundUpCorner), rotateY: mirror,}),
         middle: (left, top, width) => ({
           left, top, width, height: 74, asset: getAsset(groundUpPng), bgy: 1
         }),
-        right: (left, top) => getItem(left, top, statics.groundUpper.right),        
+        right: (left, top) => ({left, top, width: 74, height: 74, asset: getAsset(groundUpCorner), }),        
       },
       inside: {
         left: (left, top) => getItem(left, top, statics.groundInside.left),
@@ -123,7 +126,7 @@ export default {
         right: {
           horisontal: (left, top) => getItem(left, top, statics.groundRotateRight.x),
           corner: (left, top) => getItem(left, top, statics.groundRotateRight.xy),
-          vertical: (left, top, height) => ({left, top, height, width: 74, asset: getAsset(groundYrightPng)}),
+          vertical: (left, top, height) => ({left, top, height, width: 74, asset: getAsset(groundYleftPng), rotateY: mirror}),
         },       
       },
       ledge: {

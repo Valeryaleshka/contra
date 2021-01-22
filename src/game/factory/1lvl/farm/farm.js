@@ -1,4 +1,5 @@
-import background from './background.png';
+import background from './assets/background.png';
+import hills from './assets/hills.png';
 
 const defaultPerspective = 10;
 
@@ -53,4 +54,8 @@ export default {
     square: (left, top, perspective) => getItem(left, top, Background.houses.square, perspective),
     noWalls: (left, top, perspective) => getItem(left, top, Background.houses.noWalls, perspective),
   },
+  hills: {
+    height: 680,
+    element: (left, top, width ) => ({left, top, width, height: 680, asset: `url(${hills})`, perspective: 20, zIndex: 0})
+  }
 }

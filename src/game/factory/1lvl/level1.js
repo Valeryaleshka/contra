@@ -1,19 +1,22 @@
 import Farm from './farm/farm';
 import Nature from './nature/nature';
-import StaticItem from '../../entities/Elements/Statics/Static';
-import BgItem from '../../entities/Elements/Backgrounds/Background';
+import StaticItem from '../../entities/Elements/Static';
+import BgItem from '../../entities/Elements/Background';
 import Player from '../../entities/Player/Player';
-import WaterItem from '../../entities/Elements/Statics/Water';
+import WaterItem from '../../entities/Elements/Water';
 
 const height = 800;
 const defaultSize = Nature.defaultSize;
+const levelWidth = defaultSize * 100;
+const levelHeight = defaultSize * 10;
 const floor = height - defaultSize * 5;
 
 
 const backgrounds = [
-	Nature.backgrounds.trees.big(250, floor, 20),
-	Nature.backgrounds.bush.big.yellow(800, floor, 30),
-	Farm.houses.square(defaultSize * 10, height - defaultSize * 5, 200)
+	Farm.hills.element(0, height - defaultSize * 3 - Farm.hills.height, levelWidth )
+	// Nature.backgrounds.trees.big(250, floor, 20),
+	// Nature.backgrounds.bush.big.yellow(800, floor, 30),
+	// Farm.houses.square(defaultSize * 10, height - defaultSize * 5, 200)
 ];
 
 const loadBackgrounds = factory => {
@@ -28,13 +31,19 @@ const ground = [
 
 	Nature.statics.ground.upper.left(defaultSize * 0, height - defaultSize * 6),
 	Nature.statics.ground.corner.left.vertical(0 , height - defaultSize * 5, defaultSize * 5),
-	Nature.statics.ground.upper.middle(defaultSize * 1, height - defaultSize * 6, defaultSize * 4),
+	Nature.statics.ground.upper.middle(defaultSize * 1, height - defaultSize * 6, defaultSize * 3),
 	Nature.statics.ground.upper.right(defaultSize * 4, height - defaultSize * 6),
 	Nature.statics.ground.corner.right.vertical(defaultSize * 4 , height - defaultSize * 5, defaultSize * 5),
 
 	Nature.statics.ground.inside.middle(defaultSize, height - defaultSize * 5, defaultSize * 3, defaultSize * 6),
 
+	Nature.statics.ground.upper.left(defaultSize * 10, height - defaultSize * 6),
+	Nature.statics.ground.corner.left.vertical( defaultSize * 10, height - defaultSize * 5, defaultSize * 5),
+	Nature.statics.ground.upper.middle(defaultSize * 11, height - defaultSize * 6, defaultSize * 3),
+	Nature.statics.ground.upper.right(defaultSize * 14, height - defaultSize * 6),
+	Nature.statics.ground.corner.right.vertical(defaultSize * 14 , height - defaultSize * 5, defaultSize * 5),
 
+	Nature.statics.ground.inside.middle(defaultSize * 11, height - defaultSize * 5, defaultSize * 3, defaultSize * 6),
 	// // Nature.statics.ground.inside.left(defaultSize * 9, height - defaultSize * 3),
 	// // Nature.statics.ground.inside.middle(defaultSize * 10, height - defaultSize * 3),
 	// // Nature.statics.ground.inside.middle(defaultSize * 11, height - defaultSize * 3),
@@ -167,11 +176,11 @@ const loadtTriggers = (factory) => {
 			action: (factory) => factory.addBird.call(factory, 1500, 200),
 			done: false,
 		},
-		{ 
-			condition: factory => factory.entities.player.body.position.x >= 600 && factory.triggers[1].done === false,
-			action: (factory) => factory.addGolem.call(factory, 1000, 500),
-			done: false,
-		},
+		// { 
+		// 	condition: factory => factory.entities.player.body.position.x >= 600 && factory.triggers[1].done === false,
+		// 	action: (factory) => factory.addGolem.call(factory, 1000, 500),
+		// 	done: false,
+		// },
 	]
 };
 

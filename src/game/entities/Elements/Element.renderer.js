@@ -4,24 +4,43 @@ let once = true;
 
 export default function Static (props) {
 
-  const width = props.width;
-  const height = props.height;
-  const x = props.body.position.x - width / 2;  
-  const y = props.body.position.y - height / 2;
-  const { bgx, bgy, asset } = props;
-  const isVisible = props.isVisible;
+  const { 
+    width,
+    height,
+    bgx,
+    bgy,
+    isVisible,
+    rotateX,
+    rotateY,
+    body,
+    asset,
+    zIndex
+  } = props;
+
+  const getTranform = () => {
+    if (rotateX) {
+      return `rotateX(${rotateX})`
+    } else if (rotateY) {
+      return `rotateY(${rotateY})`
+    }
+  }
+
+  const left = body.position.x - width / 2;  
+  const top = body.position.y - height / 2;
 
   return isVisible ? (
     <div style={{
       position: "absolute",
-      zIndex: props.zIndex || 5,
-      top: x,
-      left: y,
+      zIndex: zIndex,
+      top: top,
+      left: left,
       width: width,
       height: height,
       backgroundImage: asset,
+      backgroundPositionY: bgy,
       backgroundPositionX: bgx,
-      backgroundPositionY: bgy
+      backgroundRepeat: "repeat",
+      transform: getTranform()
     }} />
   ) : null;
 }

@@ -29,6 +29,7 @@ export default class Player extends Unit {
     this.type = "player";
     this.unit = "player";
     this.weapon = new Gun(this);
+    this.zIndex = 10; 
   }
 
   forceMoveDown = () => {

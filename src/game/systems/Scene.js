@@ -44,8 +44,7 @@ const Scene = (entities, screen) => {
       if (playerLeft >= ((sceneWidth - playerWidth) / 2)) {
     
         const left = ((sceneWidth - playerWidth) / 2) - playerLeft;
-        const distance = left - entities.scene.left;
-        entity.move(entity.left - (distance * 5 / entity.perspective))
+        entity.move(left)
         scene.style.left = `${left}px`;
       };
     };
@@ -58,19 +57,21 @@ const Scene = (entities, screen) => {
       const playerX = player.body.position.x;
       const playerY = player.body.position.y;
 
-      if (Math.abs(playerX - left) > (sceneWidth - 200) / 2) {
-        entity.isVisible = false;
-      } else {
+      if (playerX > left && playerY < left + width && playerY > top && playerY < top + height) {
         entity.isVisible = true;
-      };
-      if (Math.abs(playerY - top) > (sceneWidth - 200)  / 2) {
-        entity.isVisible = false;
       } else {
-        entity.isVisible = true;
+        if (Math.abs(playerX - left) > (sceneWidth - 200) / 2) {
+          entity.isVisible = false;
+        } else {
+          entity.isVisible = true;
+        };
+        if (Math.abs(playerY - top) > (sceneWidth - 200)  / 2) {
+          entity.isVisible = false;
+        } else {
+          entity.isVisible = true;
+        }
       }
     }
-
-
   })
  
   const top = -bottomCameraSpacing + sceneHeight - playerTop;
