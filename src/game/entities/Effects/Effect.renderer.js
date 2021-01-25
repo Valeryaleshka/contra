@@ -3,8 +3,6 @@ import './Effect.css';
 
 export default function Effect (props) {
 
-  console.log(props)
-
   return <div 
     className="effect"
     style={{

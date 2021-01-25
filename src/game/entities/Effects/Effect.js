@@ -33,7 +33,6 @@ export default class Effect {
     if (!this.animation) {
       return
     };
-    console.log('animate')
     const { slides, isCycle, frameIdx, durationIdx } = this.animation;
     const frame = slides[frameIdx];
     const { w, h, x, y, duration, scale } = frame;

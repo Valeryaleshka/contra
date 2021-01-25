@@ -28,6 +28,8 @@ export default function Static (props) {
   const left = body.position.x - width / 2;  
   const top = body.position.y - height / 2;
 
+  !height && console.log(props)
+
   return isVisible ? (
     <div style={{
       position: "absolute",

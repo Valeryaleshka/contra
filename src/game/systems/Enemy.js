@@ -8,7 +8,7 @@ const Enemies = (entities, screen) => {
 
   enemies.forEach(enemy => {
     enemy.AI && enemy.AI(player)
-  })
+  });
 
   return entities
 }

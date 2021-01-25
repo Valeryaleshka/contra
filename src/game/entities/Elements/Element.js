@@ -22,6 +22,10 @@ class Element {
     this.bgy = bgy || 0;
     this.renderer = Renderer;
     this.zIndex = zIndex;
+    if (!this.top) {
+      console.log('this.top')
+      console.log(this);
+    }
   };
 };
 

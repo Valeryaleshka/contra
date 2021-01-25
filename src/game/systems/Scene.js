@@ -10,6 +10,7 @@ const Scene = (entities, screen) => {
 
   const scene = document.querySelector('.game-scene');
   const container = document.getElementById("game-container");
+  const sceneLeft = Math.abs(scene.offsetLeft);
 
   const sceneWidth = container.offsetWidth;
   const sceneHeight = container.offsetHeight;
@@ -19,6 +20,7 @@ const Scene = (entities, screen) => {
   const playerTop = player.body.position.y;
   const playerWidth = player.width;
   const bottomCameraSpacing = 450;
+
 
   const triggers = factory.triggers;
 
@@ -60,12 +62,12 @@ const Scene = (entities, screen) => {
       if (playerX > left && playerY < left + width && playerY > top && playerY < top + height) {
         entity.isVisible = true;
       } else {
-        if (Math.abs(playerX - left) > (sceneWidth - 200) / 2) {
+        if (Math.abs(playerX - left) > (sceneWidth - 400) / 2) {
           entity.isVisible = false;
         } else {
           entity.isVisible = true;
         };
-        if (Math.abs(playerY - top) > (sceneWidth - 200)  / 2) {
+        if (Math.abs(playerY - top) > (sceneWidth - 400)  / 2) {
           entity.isVisible = false;
         } else {
           entity.isVisible = true;
@@ -77,7 +79,11 @@ const Scene = (entities, screen) => {
   const top = -bottomCameraSpacing + sceneHeight - playerTop;
   scene.style.top = `${top}px`;
 
-
+  getFromEntities(entities, "enemy").forEach(enemy => {
+    if (enemy.body.position.x < sceneLeft || enemy.body.position.y > sceneHeight) {
+      factory.removeUnit(enemy)
+    }
+  });
 
   return entities
 

@@ -48,7 +48,7 @@ export default class GameFactory {
     };
     const level = levels[this.level];
     level.setup(this);
-    
+
     const matterJS = new MatterJS(this);
     matterJS.setupWorld();
     return this.entities;
@@ -69,6 +69,7 @@ export default class GameFactory {
   addToEntities = entity => {
     const type = entity.type;
     const key = type + this.counts[type];
+    entity.key = key;
     this.addCount(type);
     this.entities[key] = entity;
   };
@@ -84,24 +85,22 @@ export default class GameFactory {
   };
 
   addPlayer = (left, top) => {
-    const player = new Player({left: left, top: top, key: "player", factory: this});
+    const player = new Player({ left: left, top: top, key: "player", factory: this });
     this.addToBodies(player.body);
     this.addToEntities(player);
   };
 
   /* Враги */
   addBird = (x, y) => {
-    const bird = new Bird({left: x, top: y, factory: this });
+    const bird = new Bird({ left: x, top: y, factory: this });
     this.addToBodies(bird.body);
     this.addToEntities(bird);
-    console.log(this.entities);
   };
 
   addGolem = (x, y) => {
-    const golem = new Golem({left: x, top: y, factory: this });
+    const golem = new Golem({ left: x, top: y, factory: this });
     this.addToBodies(golem.body);
     this.addToEntities(golem);
-    console.log(this.enitites);
   };
 
   removeUnit = unit => {
@@ -110,21 +109,22 @@ export default class GameFactory {
     };
     defineUnit(unit);
     this.removeFromEntities(unit);
+    console.log(this.entities);
   }
 
   /* Эффекты */
   addEffect = (getEffect, props) => {
     const key = Symbol();
-    const effect = getEffect({...props, key });
+    const effect = getEffect({ ...props, key });
     this.addToEntities(effect);
   };
 
-  addBang = ({centerX, centerY}) => {
-    const props = {centerX, centerY, factory: this};
+  addBang = ({ centerX, centerY }) => {
+    const props = { centerX, centerY, factory: this };
     this.addEffect(Effects.bang, props);
   };
 
-  addBulletHit = ({centerX, centerY}) => {
+  addBulletHit = ({ centerX, centerY }) => {
     const props = { centerX, centerY, factory: this }
     this.addEffect(Effects.bulletHit, props);
   };
@@ -135,13 +135,13 @@ export default class GameFactory {
 
   /* Снаряды */
   createPlayerBullet = (x, y, angle, speed, damage) => {
-    const bullet = new PlayerBullet({ x, y, speed, angle, factory: this, damage  });
+    const bullet = new PlayerBullet({ x, y, speed, angle, factory: this, damage });
     this.addToBodies(bullet.body);
     this.addToEntities(bullet);
   };
 
   createGolemBullet = (x, y, angle, speed, damage) => {
-    const bullet = new GolemBullet({ x, y: y + 40, speed, angle, factory: this, damage});
+    const bullet = new GolemBullet({ x, y: y + 40, speed, angle, factory: this, damage });
     this.addToBodies(bullet.body);
     this.addToEntities(bullet);
   };

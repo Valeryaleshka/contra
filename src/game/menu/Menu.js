@@ -115,13 +115,10 @@ export default class Menu extends Component {
 
   startGame() {
     let name = this.input.current.value;
-    console.log(this.props);
     this.props.game.setState({
       playerName: name,
       showMenu: true,
     });
-    console.log(this.props);
-
     this.music.play();
     this.resumeClickHandler();
   }

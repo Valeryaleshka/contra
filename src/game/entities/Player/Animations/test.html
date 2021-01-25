@@ -16,49 +16,21 @@
 
 <script>
 
-const idle = [{
-  slides: [
-    {x: -44, y: 0, w: 45, h: 45, duration: 6},
-    {x: -86, y: 0, w: 45, h: 45,  duration: 6},
-    {x: -128, y: 0, w: 45, h: 45,  duration: 6},
-    {x: -170, y: 0, w: 45, h: 45,  duration: 6},
-  ],
-  isCycle: true
-}]
-
-  const jump = {
+  const _animation = [
+  {
     slides: [
-    {x: -53, y: -117, w: 50, h: 50, duration: 70},
-    {x: -100, y: -117, w: 45, h: 51, duration: 80},
-    {x: -141, y: -117, w: 45, h: 51, duration: 100},
-    {x: -182, y: -117, w: 42, h: 51, duration: 80},
-    {x: -222, y: -115, w: 42, h: 57, duration: 120},
-    {x: -264, y: -100, w: 41, h: 78, duration: 120},
-    {x: -303, y: -100, w: 41, h: 78, duration: 120},
+      {x: 2, y: -24, w: 45, h: 45, duration: 125},
+      {x: -41, y: -24, w: 45, h: 45, duration: 125},
+      {x: -85, y: -24, w: 45, h: 45, duration: 125},
+      {x: -131, y: -24, w: 54, h: 45, duration: 125},
+      {x: -186, y: -24, w: 54, h: 45, duration: 125},
+      {x: -240, y: 0, w: 65, h: 68, duration: 125},
+      {x: -314, y: -14, w: 80, h: 55, duration: 125},
+      {x: -398, y: -14, w: 80, h: 55, duration: 125},
     ],
-    isCycle: false
-  };
-
-  const fall = {
-    slides: [
-    {x: -264, y: -100, w: 41, h: 78, duration: 120},
-    {x: -303, y: -100, w: 41, h: 78, duration: 120},
-  ],
-    isCycle: true
-  };
-
-  const jumpAndFire = {
-    slides: [
-    {x: -59, y: -590, w: 51, h: 57, duration: 70},
-    {x: -100, y: -117, w: 45, h: 51, duration: 80},
-    {x: -141, y: -117, w: 45, h: 51, duration: 100},
-    {x: -182, y: -117, w: 42, h: 51, duration: 80},
-    {x: -222, y: -115, w: 42, h: 57, duration: 120},
-    {x: -264, y: -100, w: 41, h: 78, duration: 120},
-    {x: -303, y: -100, w: 41, h: 78, duration: 120},
-    ],
-    isCycle: false
-  };
+    isCycle: true,
+  },
+];
 
 let frameId = 0;
 let timeOut;
@@ -99,7 +71,6 @@ const animate = (..._animations) => {
   };
 
   const nextAnimation = () => {
-    console.log(idx)
     if (idx === undefined) {
       idx = 0;
     } else if (animations[idx + 1]) {
@@ -109,14 +80,13 @@ const animate = (..._animations) => {
       return;
     };
     animation = animations[idx];
+    console.log(`idx = ${idx}`);
+    console.log(animations[idx]);
     const slides = animation.slides;
     const isCycle = animation.isCycle;
-    console.log(slides, isCycle)
     nextSlide(slides, isCycle)
   };
-
   nextAnimation()
-
 };
 
 const chooseSlide = (animation) => {
@@ -124,11 +94,11 @@ const chooseSlide = (animation) => {
   drawFrame(animation[0])
 };
 
-drawFrame(idle.slides[0]);
+drawFrame(_animation[0].slides[0]);
 
 animateButton.onclick = () => {
 
-  frameId = 0; animate(idle);
+  frameId = 0; animate(..._animation);
 };
 
 stopButton.onclick = () => {
@@ -163,7 +133,7 @@ stopButton.onclick = () => {
   .test {
     width: 50px;
     height: 50px;
-    background-image: url(./Player.png);
+    background-image: url(./strike.png);
     background-position: -20px -30px;
     background-repeat: no-repeat;
     background-color: black;
