@@ -12,13 +12,7 @@ import gameOverMusic from "./../../assets/audio/GameOver.mp3";
 export default class Menu extends Component {
   constructor(props) {
     super(props);
-    this.pauseClickHandler = this.pauseClickHandler.bind(this);
-    this.resumeClickHandler = this.resumeClickHandler.bind(this);
-    this.restartClickHandler = this.restartClickHandler.bind(this);
-    this.menuControlsHandler = this.menuControlsHandler.bind(this);
-    this.menuSettingsHandler = this.menuSettingsHandler.bind(this);
-    this.dead = this.dead.bind(this);
-    this.startGame = this.startGame.bind(this);
+
     this.menu = React.createRef();
     this.input = React.createRef();
     this.music = new Audio(stage1);
@@ -29,7 +23,14 @@ export default class Menu extends Component {
       isSettingsActive: false,
       isDead: false,
       isStarted: false,
+      volume: 1,
     };
+
+    this.music = [
+      new Audio(stage1),
+      new Audio(gameOverMusic),
+      new Audio(pauseMusic),
+    ];
     this.entity = null;
 
     this.init();
@@ -51,19 +52,27 @@ export default class Menu extends Component {
     });
   }
 
-  dead() {
+  dead = () => {
     let gameOver = new Audio(gameOverMusic);
     setTimeout(() => {
-      gameOver.play();
+      this.music[2].play();
     }, 500);
 
     this.setState({
       isDead: true,
     });
     this.pauseClickHandler();
-  }
+  };
 
-  menuControlsHandler() {
+  changeVolume = (elementvolume) => {
+    this.music.forEach((element) => {
+      element.volume = elementvolume;
+    });
+    this.setState({ volume: elementvolume });
+    console.log(elementvolume);
+  };
+
+  menuControlsHandler = () => {
     if (this.state.isControlsActive) {
       this.setState({
         isControlsActive: false,
@@ -73,9 +82,9 @@ export default class Menu extends Component {
         isControlsActive: true,
       });
     }
-  }
+  };
 
-  menuSettingsHandler() {
+  menuSettingsHandler = () => {
     if (this.state.isSettingsActive) {
       this.setState({
         isSettingsActive: false,
@@ -85,22 +94,22 @@ export default class Menu extends Component {
         isSettingsActive: true,
       });
     }
-  }
+  };
 
-  pauseClickHandler() {
+  pauseClickHandler = () => {
     this.props.game.gameEngine.stop();
     this.menu.current.classList.remove("hidden");
     this.props.game.setState({
       isStarted: true,
       showMenu: true,
     });
-    this.music.pause();
-    let tes = new Audio(pauseMusic);
+    this.music[0].pause();
+
     if (!this.state.isDead) {
-      tes.play();
+      this.music[2].play();
     }
-  }
-  resumeClickHandler() {
+  };
+  resumeClickHandler = () => {
     this.props.game.gameEngine.start();
 
     this.props.game.setState({
@@ -108,21 +117,21 @@ export default class Menu extends Component {
     });
     this.menu.current.classList.add("hidden");
     this.render();
-    this.music.play();
-  }
+    this.music[0].play();
+  };
 
-  restartClickHandler() {}
+  restartClickHandler = () => {};
 
-  startGame() {
+  startGame = () => {
     let name = this.input.current.value;
     this.props.game.setState({
       playerName: name,
       showMenu: true,
     });
-    this.music.play();
-    this.props.game.factory.addPlayer(200, 400)
+    this.music[0].play();
+    this.props.game.factory.addPlayer(200, 400);
     this.resumeClickHandler();
-  }
+  };
 
   render() {
     return (
@@ -132,7 +141,11 @@ export default class Menu extends Component {
         )}
 
         {this.state.isSettingsActive && (
-          <MenuSettings callback={this.menuSettingsHandler} />
+          <MenuSettings
+            callback={this.menuSettingsHandler}
+            changeVolume={this.changeVolume}
+            volume={this.state.volume}
+          />
         )}
         {this.state.isDead && <DeadMenu callback={this.restartClickHandler} />}
 
