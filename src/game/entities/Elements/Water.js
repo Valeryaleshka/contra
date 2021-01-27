@@ -3,7 +3,6 @@ import Matter from 'matter-js';
 
 export default class Water extends Static {
   constructor(props) {
-    console.log(props);
     super(props);
     this.body = Matter.Bodies.
                 rectangle(props.left + props.width / 2, props.top + props.height / 2, 
@@ -13,6 +12,5 @@ export default class Water extends Static {
     this.zIndex = 1;
     this.name = "water";
     this.isVisible = true;
-    console.log(this);
   }
 }

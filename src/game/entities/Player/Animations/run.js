@@ -1,8 +1,8 @@
-import png from './idle.png';
+import png from './run.png';
 
 const asset = `url(${png})`;
 
-const run = {
+const run = [{
   slides: [
     {x: -2, y: -2, w: 45, h: 45, duration: 7},
     {x: -49, y: -2, w: 45, h: 45, duration: 7},
@@ -18,6 +18,6 @@ const run = {
     ],
     isCycle: true,
     asset
-};
+}];
 
 export default run

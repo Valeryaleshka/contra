@@ -1,3 +1,7 @@
+import png from './Bird.png';
+
+const asset = `url(${png})`;
+
 const idle = [{
   slides: [
     { x: -0, y: -0, w: 182, h: 170, duration: 6 },
@@ -15,7 +19,8 @@ const idle = [{
     { x: -364, y: -340, w: 182, h: 170, duration: 6 },
     { x: -546, y: -340, w: 182, h: 170, duration: 6 },
   ],
-  isCycle: true
+  isCycle: true,
+  asset
 }]
 
 const move = [{
@@ -32,7 +37,8 @@ const move = [{
     { x: -409, y: -52, w: 45, h: 45, duration: 6 },
     { x: -464, y: -52, w: 45, h: 45, duration: 6 },
   ],
-  isCycle: true
+  isCycle: true,
+  asset
 }];
 
 const jump = {
@@ -45,7 +51,8 @@ const jump = {
     { x: -264, y: -110, w: 41, h: 78, duration: 5 },
     { x: -303, y: -100, w: 41, h: 78, duration: 4 },
   ],
-  isCycle: false
+  isCycle: false,
+  asset
 };
 
 const fall = {
@@ -53,7 +60,8 @@ const fall = {
     { x: -264, y: -100, w: 41, h: 78, duration: 5 },
     { x: -303, y: -100, w: 41, h: 78, duration: 5 },
   ],
-  isCycle: true
+  isCycle: true,
+  asset
 };
 
 const jumpAnimation = [
@@ -85,7 +93,8 @@ const idleFire = [{
     { x: -375, y: -410, w: 45, h: 45, duration: 4 },
     { x: -433, y: -410, w: 45, h: 45, duration: 4 },
   ],
-  isCycle: false
+  isCycle: false,
+  asset
 }];
 
 

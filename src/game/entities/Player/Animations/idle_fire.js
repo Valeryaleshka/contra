@@ -2,7 +2,7 @@ import png from './idle_fire.png';
 
 const asset = `url(${png})`;
 
-const idleFire = {
+const idleFire = [{
     slides: [
       {x: 3, y: 0, w: 45, h: 45, duration: 5},
       {x: -45, y: 0, w: 45, h: 45, duration: 5},
@@ -12,6 +12,6 @@ const idleFire = {
     ],
     isCycle: true,
     asset
-};
+}];
 
 export default idleFire

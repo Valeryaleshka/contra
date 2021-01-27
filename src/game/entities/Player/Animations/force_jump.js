@@ -8,6 +8,7 @@ const forceJump = [
       {x: 3, y: -6, w: 45, h: 45, duration: 7},
       ],
       isCycle: false,
+      asset,
     },
     {
     slides: [
@@ -15,6 +16,7 @@ const forceJump = [
       {x: -87, y: 0, w: 45, h: 55, duration: 6},
       ],
       isCycle: true,
+      asset,
     },
 ]
 

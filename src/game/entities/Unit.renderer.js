@@ -27,6 +27,7 @@ export default function Unit(props) {
       backgroundImage: props.asset,
       backgroundPositionX: props.bgx,
       backgroundPositionY: props.bgy,
+      backgroundRepeat: props.repeat || "repeat",
       transform: chooseRotate()
     }}>
       {!effect && <div style={{

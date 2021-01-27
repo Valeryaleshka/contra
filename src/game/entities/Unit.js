@@ -115,7 +115,7 @@ export default class Unit {
     };
   
     jump = () => {
-      !this.isJumping && this.changeAnimation(this.animations.jumpAnimation);
+      !this.isJumping && this.changeAnimation(this.animations.jump);
       if (!this.isJumping) {
         Matter.Body.applyForce(this.body, this.body.position, { x: 0, y: -5 })
         this.isJumping = true;
@@ -126,10 +126,16 @@ export default class Unit {
       if (!this.weapon) return;
       if (!this.weapon.isReloaded) {
         this.weapon.shoot();
-        this.changeAnimation(this.animations.idleFire);
+        if (!this.isJumping) {
+          this.changeAnimation(this.animations.idleFire);     
+        } else {
+          this.changeAnimation(this.animations.jumpAndFire);
+        }
+
       };
     };
-  
+
+ 
     hit = (dmg) => {
       this.animations.damage && this.changeAnimation(this.animations.damage);
       this.health -= dmg;

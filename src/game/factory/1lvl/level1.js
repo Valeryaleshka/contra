@@ -5,12 +5,12 @@ import BgItem from '../../entities/Elements/Background';
 import Player from '../../entities/Player/Player';
 import WaterItem from '../../entities/Elements/Water';
 
-const height = 800;
 const blockSize = Nature.blockSize;
 const waterHeight = Nature.waterHeight;
 const corniceHeight = Nature.corniceHeight;
 const levelWidth = blockSize * 100;
-const levelHeight = blockSize * 10;
+const levelHeight = blockSize * 40;
+const height = levelHeight;
 const floor = height - blockSize * 5;
 
 
@@ -62,6 +62,7 @@ const ground = [
 	Nature.statics.ground.upper.left(blockSize * 0, height - blockSize * 4),
 	Nature.statics.ground.upper.middle(blockSize * 1, height - blockSize * 4, blockSize * 2),
 	Nature.statics.ground.upper.rightCorner(blockSize * 3, height - blockSize * 4, blockSize),
+	Nature.statics.ground.corner.right(blockSize * 4, height - blockSize * 4),
 	Nature.statics.ground.upper.left(blockSize * 4, height - blockSize * 7),
 	Nature.statics.ground.upper.right(blockSize * 5, height - blockSize * 7),
 	Nature.statics.ground.inside(blockSize, height - blockSize * 3, blockSize * 4, blockSize * 3),
@@ -478,7 +479,7 @@ const setup = factory => {
 	loadWater(factory);
 	loadBackgrounds(factory);
 	loadtTriggers(factory);
-	loadPlayer(factory);
+	return { levelWidth, levelHeight }
 };
 
 export default {

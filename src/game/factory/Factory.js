@@ -47,10 +47,16 @@ export default class GameFactory {
       }
     };
     const level = levels[this.level];
-    level.setup(this);
+    const levelProps = level.setup(this);
+
+    this.entities.levelWidth = levelProps.levelWidth;
+    this.entities.levelHeight = levelProps.levelHeight;
+    this.entities.sceneLeft = 0;
+    this.entities.sceneTop = 0;
 
     const matterJS = new MatterJS(this);
     matterJS.setupWorld();
+
     return this.entities;
   }
 
@@ -68,7 +74,7 @@ export default class GameFactory {
 
   addToEntities = entity => {
     const type = entity.type;
-    const key = type + this.counts[type];
+    const key = type === "player" ? type : type + this.counts[type];
     entity.key = key;
     this.addCount(type);
     this.entities[key] = entity;
@@ -109,7 +115,6 @@ export default class GameFactory {
     };
     defineUnit(unit);
     this.removeFromEntities(unit);
-    console.log(this.entities);
   }
 
   /* Эффекты */

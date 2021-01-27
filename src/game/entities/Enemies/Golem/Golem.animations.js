@@ -1,3 +1,7 @@
+import png from './Golem.png';
+
+const asset = `url(${png})`;
+
 const idle = [{
   slides: [
     { x: -25, y: -473, w: 113, h: 130, duration: 6 },
@@ -12,7 +16,8 @@ const idle = [{
     { x: -1066, y: -473, w: 113, h: 130, duration: 6 },
     { x: -1176, y: -473, w: 113, h: 130, duration: 6 },
   ],
-  isCycle: true
+  isCycle: true,
+  asset
 }]
 
 const move = [{
@@ -29,7 +34,8 @@ const move = [{
     { x: -409, y: -52, w: 45, h: 45, duration: 6 },
     { x: -464, y: -52, w: 45, h: 45, duration: 6 },
   ],
-  isCycle: true
+  isCycle: true,
+  asset
 }];
 
 const jump = {
@@ -42,7 +48,8 @@ const jump = {
     { x: -264, y: -110, w: 41, h: 78, duration: 5 },
     { x: -303, y: -100, w: 41, h: 78, duration: 4 },
   ],
-  isCycle: false
+  isCycle: false,
+  asset
 };
 
 const fall = {
@@ -50,7 +57,8 @@ const fall = {
     { x: -264, y: -100, w: 41, h: 78, duration: 5 },
     { x: -303, y: -100, w: 41, h: 78, duration: 5 },
   ],
-  isCycle: true
+  isCycle: true,
+  asset
 };
 
 const jumpAnimattion = [
@@ -77,7 +85,8 @@ const idleFire = [{
     { x: -634, y: -148, w: 105, h: 130, duration: 4 },
     { x: -754, y: -148, w: 105, h: 130, duration: 4 },
   ],
-  isCycle: true
+  isCycle: true,
+  asset
 }];
 
 export default {

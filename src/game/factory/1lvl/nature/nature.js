@@ -10,6 +10,7 @@ import vertical from './assets/vertical.png';
 import water from './assets/water.png';
 import waterUp from './assets/waterUp.png';
 import asset from './nature.png';
+import cornerInside from './assets/cornerInside.png';
 
 const defaultPerspective = 10;
 const size = 74;
@@ -69,6 +70,19 @@ export default {
         width, height,
         asset: getAsset(middle)
       }),
+
+      corner:
+      {
+        right: (left, top) => ({
+          left, top, width: size, height: size,
+          asset: getAsset(cornerInside),
+          rotateY: mirror
+        }),
+        left: (left, top) => ({
+          left, top, width: size, height: size,
+          asset: getAsset(cornerInside),
+        })
+      },
 
       upper: {
 

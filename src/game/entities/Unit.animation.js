@@ -36,7 +36,8 @@ export default function setAnimation () {
     };
   
     const { duration } = frame;
-    const { isCycle } = currentAnimation;
+    const { isCycle, asset } = currentAnimation;
+    this.asset = asset;
   
     if(durationIdx === 0) {
       const { x, y, w, h, } = frame;

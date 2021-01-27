@@ -1,8 +1,6 @@
 import Enemy from '../Enemy';
-import Matter from 'matter-js';
 import animations from './Bird.animations';
 import background from './Bird.png';
-import Bang from '../../Effects/Bang/Bang';
 
 const asset = `url(${background})`;
 
