@@ -23,7 +23,7 @@ export default class Menu extends Component {
       isSettingsActive: false,
       isDead: false,
       isStarted: false,
-      volume: 1,
+      volume: 0.5,
     };
 
     this.music = [
@@ -53,7 +53,6 @@ export default class Menu extends Component {
   }
 
   dead = () => {
-    let gameOver = new Audio(gameOverMusic);
     setTimeout(() => {
       this.music[2].play();
     }, 500);
@@ -69,7 +68,6 @@ export default class Menu extends Component {
       element.volume = elementvolume;
     });
     this.setState({ volume: elementvolume });
-    console.log(elementvolume);
   };
 
   menuControlsHandler = () => {
@@ -120,7 +118,9 @@ export default class Menu extends Component {
     this.music[0].play();
   };
 
-  restartClickHandler = () => {};
+  restartClickHandler = () => {
+    this.resumeClickHandler();
+  };
 
   startGame = () => {
     let name = this.input.current.value;
@@ -129,6 +129,7 @@ export default class Menu extends Component {
       showMenu: true,
     });
     this.music[0].play();
+    this.changeVolume(0.5);
     this.props.game.factory.addPlayer(200, 400);
     this.resumeClickHandler();
   };
